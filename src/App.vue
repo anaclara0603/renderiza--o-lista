@@ -11,8 +11,11 @@ import { ref } from 'vue'
     { nome: 'e', quantidade: 0},
     { nome: 'f', quantidade: 0}])
 
-    function additem (){
-    cidades.value.push(novaCidade.value)
+function additem (){
+    cidades.value.push({
+        nome: novaCidade.value,
+        quantidade: 0
+    })
     novaCidade.value = ''
   }
 
@@ -28,9 +31,9 @@ import { ref } from 'vue'
 
 <template>
     <input type="text" v-model="novaCidade">
-    <button @click="additem">adicionar</button>
+    <button @click="additem()">adicionar</button>
     <ul>
-        <li v-for="(item, index) in cidades" :key="item">{{ item.nome }} - {{ item.quantidade }} <button @click="remover(index)">✘</button>
+        <li v-for="(item, index) in cidades" :key="item">{{ item.nome }}  {{ item.quantidade }} <button @click="remover(index)">✘</button>
              <button @click="addquant(index)">+</button></li>
     </ul>
 </template>
