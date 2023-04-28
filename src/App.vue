@@ -33,7 +33,8 @@ function additem (){
     <input type="text" v-model="novaCidade">
     <button @click="additem()">adicionar</button>
     <ul>
-        <li v-for="(item, index) in cidades" :key="item">{{ item.nome }}  {{ item.quantidade }} <button @click="remover(index)">✘</button>
+        <li v-for="(item, index) in cidades.sort(function(a,b) {
+    return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;})" :key="item">{{ item.nome }}  {{ item.quantidade }} <button @click="remover(index)">✘</button>
              <button @click="addquant(index)">+</button></li>
     </ul>
 </template>
